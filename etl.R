@@ -28,6 +28,10 @@ select_file <- info_list %>%
   mutate(file = rownames(.)) %>% 
   pull(file)
 
+dir.create(file.path("Cache/"), showWarnings = FALSE)
+dir.create(file.path("Output/"), showWarnings = FALSE)
+
+
 
 if (is.na(select_file_old)) {
   saveRDS(select_file,"Cache/select_file.rds")
