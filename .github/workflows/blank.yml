@@ -20,14 +20,12 @@ jobs:
       - name: Checkout1
         uses: actions/checkout@v3 # Checkout branch into the runner
         with:
-          path: "src"
           ref: "main"
           persist-credentials: false
           
       - name: Checkout2
         uses: actions/checkout@v3 # Checkout branch into the runner
         with:
-          path: "dest"
           ref: "main"
           repository: ogdtg/data_public
           token: ${{ secrets.PAT_TOKEN }}
