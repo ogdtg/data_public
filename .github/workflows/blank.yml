@@ -18,14 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout1
-      - uses: actions/checkout@v3 # Checkout branch into the runner
+        uses: actions/checkout@v3 # Checkout branch into the runner
         with:
           path: "src"
           ref: "main"
           persist-credentials: false
           
       - name: Checkout2
-      - uses: actions/checkout@v3 # Checkout branch into the runner
+        uses: actions/checkout@v3 # Checkout branch into the runner
         with:
           path: "dest"
           ref: "main"
@@ -35,7 +35,7 @@ jobs:
           persist-credentials: true
       
       - name: Use R
-      - uses: r-lib/actions/setup-r@v3 # Set up R runtime
+        uses: r-lib/actions/setup-r@v3 # Set up R runtime
         with:
           r-version: '4.2.0'
       - name: Install Dependencies
