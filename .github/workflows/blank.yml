@@ -34,6 +34,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
       
+      - name: Use R
       - uses: r-lib/actions/setup-r@v3 # Set up R runtime
         with:
           r-version: '4.2.0'
