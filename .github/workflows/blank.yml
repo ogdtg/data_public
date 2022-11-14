@@ -49,7 +49,7 @@ jobs:
           git config --local user.email "ogdtg@github.com"
           git config --local user.name "ogdtg"
           git pull
-          git add Output
+          git add .
           git commit -m "update data" && git push https://$USERNAME:$REPO_KEY@github.com/ogdtg/data_public.git
         env:
           REPO_KEY: ${{secrets.PAT_TOKEN}}
