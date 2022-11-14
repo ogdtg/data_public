@@ -46,11 +46,11 @@ jobs:
         
       - name: Check fro new files
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "actionuser"
+          git config --local user.email "ogdtg@github.com"
+          git config --local user.name "ogdtg"
           git pull
           git add .
           git commit -m "update data" && https://$USERNAME:$REPO_KEY@github.com/ogdtg/data_public.git
         env:
           REPO_KEY: ${{secrets.PAT_TOKEN}}
-          USERNAME: actionuser
+          USERNAME: ogdtg
