@@ -46,9 +46,9 @@ jobs:
         
       - name: Check fro new files
         run: |
+          git config --unset-all http.https://github.com/.extraheader
           git config --local user.email "ogdtg@github.com"
           git config --local user.name "ogdtg"
-          git config --unset-all http.https://github.com/.extraheader
           git pull
           git add .
           git commit -m "update data" && git push https://$USERNAME:$REPO_KEY@github.com/ogdtg/data_public.git
