@@ -64,7 +64,8 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git pull
-          git add Output
-          git diff-index --quiet HEAD || (git commit -m "update data" && https://ogdtg:$REPO_KEY@github.com/ogdtg/data_public.git )
+          git add .
+          git commit -m "update data" && https://$USERNAME:$REPO_KEY@github.com/ogdtg/data_public.git
         env:
           REPO_KEY: ${{secrets.PAT_TOKEN}}
+          USERNAME: GitHub Actions
