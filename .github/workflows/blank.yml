@@ -60,7 +60,6 @@ jobs:
         shell: Rscript {0}
         
       - name: Check fro new files
-        working-directory: dest
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
