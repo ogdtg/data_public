@@ -49,9 +49,10 @@ jobs:
           git config --unset-all http.https://github.com/.extraheader
           git config --local user.email "ogdtg@github.com"
           git config --local user.name "ogdtg"
+          git remote add origin https://$REPO_KEY@github.com/ogdtg/data_public.git/
           git pull
           git add .
-          git commit -m "update data" && git push https://$USERNAME:$REPO_KEY@github.com/ogdtg/data_public.git
+          git commit -m "update data" && git push origin master
         env:
           REPO_KEY: ${{secrets.PAT_TOKEN}}
           USERNAME: ogdtg
