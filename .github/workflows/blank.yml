@@ -52,7 +52,7 @@ jobs:
           git remote add origin https://$REPO_KEY@github.com/ogdtg/data_public.git/
           git pull
           git add .
-          git commit -m "update data" && git push origin master
+          git commit -m "update data" && git push
         env:
           REPO_KEY: ${{secrets.PAT_TOKEN}}
           USERNAME: ogdtg
