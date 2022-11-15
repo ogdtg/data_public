@@ -17,6 +17,7 @@ before_script:
   - apt-get update -y && apt-get install -yqqf git unzip sshpass rsync --fix-missing 
   - git config --global user.name "ogd@tg.ch"
   - git config --global user.email "ogdtg"
+  - cd Output
   - git clone https://$PAT_TOKEN:@github.com/ogdtg/data_public.git
   #- git remote add old https://ogdtggitlab:$PAT_TOKEN@github.com/ogdtg/data_private.git
   #- git fetch --unshallow old
