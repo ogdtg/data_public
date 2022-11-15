@@ -36,9 +36,9 @@ jobs:
     - git clone https://$PAT_TOKEN:@github.com/ogdtg/data_private.git
    # - git remote rm origin && git remote set-url origin https://ogdtggitlab:$PAT_TOKEN@github.com/ogdtg/data_private.git
     - git remote set-url origin https://ogdtggitlab:$PAT_TOKEN@github.com/ogdtg/data_private.git
+    - git checkout main
     - git add Output
 
     - git commit -m "data from $COMMIT_TIME" || echo "No changes, nothing to commit!"
-    - git checkout main
     - git push -u origin main
 
