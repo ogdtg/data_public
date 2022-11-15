@@ -1,6 +1,3 @@
-stages:
-  - data_prep
-  - data_publish
 
 variables:
   RENV_CONFIG_REPOS_OVERRIDE: "http://cran.r-project.org"
@@ -19,7 +16,6 @@ image: rocker/r-ver:4.1.2
  
 
 data_preparation:
-  stage: data_prep
   before_script:
   - apt-get update -y && apt-get install -yqqf git unzip sshpass rsync --fix-missing 
   - git config --global user.name "ogd@tg.ch"
@@ -45,15 +41,3 @@ data_preparation:
     - git add .
     - git commit -m "data from $COMMIT_TIME" || echo "No changes, nothing to commit!"
     - git push -f origin main
-  rules:
-    - changes:
-        - Input
-
-data_publish::
-  stage: data_publish
-  before_script:
-  - apt-get update -y && apt-get install -yqqf git unzip sshpass rsync --fix-missing 
-  - apk add --update curl && rm -rf /var/cache/apk/*
-  script:
-    - echo "Publish Dataset"
-    - curl https://data.tg.ch/api/management/v2/datasets/$DATASET_ID/publish \ -X PUT \ -u $USER:$KEY
