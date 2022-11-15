@@ -23,9 +23,9 @@ before_script:
 
 jobs:
     artifacts:
-        expose_as: 'Output'
+        expose_as: 'output'
         paths:
-            - "Output"
+            - "output_data"
     script:
     - echo "Pulling external repo into build"
     
@@ -35,8 +35,8 @@ jobs:
 # You might want to pull --rebase here just in case someone else has pushed to this branch?
     - git clone https://$PAT_TOKEN:@github.com/ogdtg/data_private.git
     - git remote rm origin && git remote add origin "git@github.com/ogdtg/data_private.git"
-    - git add Output
+    - git add output_data
 
     - git commit -m "data from $COMMIT_TIME" || echo "No changes, nothing to commit!"
-    - git push origin
+    - git push origin HEAD:main
 
