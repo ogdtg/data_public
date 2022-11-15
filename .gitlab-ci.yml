@@ -32,21 +32,18 @@ before_script:
   - Rscript -e "renv::restore()"
   - export COMMIT_TIME=$(git show -s --format=%ct $CI_COMMIT_SHA)  
 
-jobs:
-    artifacts:
-        expose_as: 'Output'
-        paths:
-            - "Output"
-    script:
+data_upload:
+  artifacts:
+    expose_as: 'Output'
+    paths:
+        - "Output"
+  script:
     - echo "Pulling external repo into build"
-    
-    # Do something after pulling your repo
     - Rscript etl.R
-    
-# You might want to pull --rebase here just in case someone else has pushed to this branch?
-    
-    #- git pull --allow-unrelated-histories
     - git add .
     - git commit -m "data from $COMMIT_TIME" || echo "No changes, nothing to commit!"
     - git push -f origin main
+  rules:
+    - changes:
+        - Input
 
