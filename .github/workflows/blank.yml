@@ -44,17 +44,14 @@ jobs:
         run: source("etl.R")
         shell: Rscript {0}
         
-      - name: Check fro new files
-        run: |
-          cd Output
-          git config --unset-all http.https://github.com/.extraheader
-          git config --global user.email "ogd@tg.ch"
-          git config --global user.name "ogdtg"
-          git config --global credential.helper cache
-          git clone https://${{secrets.PAT_TOKEN}}@github.com/ogdtg/data_public.git
-          mv Output public_output
-          cd public_output
-          git add . 
-          git commit -m "$(date)"
-          git push
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PAT_TOKEN }}
+        with:
+          source-directory: 'Output'
+          destination-github-username: 'ogdtg'
+          destination-repository-name: 'data_public'
+          user-email: ogd@tg.ch
+          target-branch: main
 
