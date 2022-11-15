@@ -34,13 +34,13 @@ jobs:
     
 # You might want to pull --rebase here just in case someone else has pushed to this branch?
     - git clone https://$PAT_TOKEN:@github.com/ogdtg/data_public.git
-    - git remote add old https://ogdtggitlab:$PAT_TOKEN@github.com/ogdtg/data_private.git
-    - git fetch --unshallow old
-    - git remote remove old
+    #- git remote add old https://ogdtggitlab:$PAT_TOKEN@github.com/ogdtg/data_private.git
+    #- git fetch --unshallow old
+    #- git remote remove old
     - git remote set-url origin https://ogdtggitlab:$PAT_TOKEN@github.com/ogdtg/data_public.git
     - git checkout main
     - git pull --allow-unrelated-histories
-    - git add Output
+    - git add Output/output_data.csv
     - git commit -m "data from $COMMIT_TIME" || echo "No changes, nothing to commit!"
     - git push -u origin main
 
