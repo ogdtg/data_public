@@ -39,7 +39,8 @@ if (is.na(select_file_old)) {
               fileEncoding = "UTF-8",
               quote = T,
               dec = ".",
-              sep = ",")
+              sep = ",",
+              row.names = F)
   message("CSV saved in Output")
 } else {
   if (select_file_old==select_file){
@@ -50,7 +51,8 @@ if (is.na(select_file_old)) {
                 fileEncoding = "UTF-8",
                 quote = T,
                 dec = ".",
-                sep = ",")
+                sep = ",",
+                row.names = F)
     message("CSV saved in Output")
   }
 }
