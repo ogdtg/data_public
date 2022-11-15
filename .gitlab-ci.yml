@@ -36,7 +36,7 @@ jobs:
     artifacts:
         expose_as: 'Output'
         paths:
-            - "push_data/"
+            - "Output"
     script:
     - echo "Pulling external repo into build"
     
