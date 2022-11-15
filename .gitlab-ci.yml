@@ -27,7 +27,7 @@ jobs:
         paths:
             - "output_data"
     script:
-    - echo "Pulling external repo"
+    - echo "Pulling external repo into build"
     
     # Do something after pulling your repo
     - Rscript etl.R
