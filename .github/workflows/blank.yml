@@ -46,14 +46,14 @@ jobs:
         
       - name: Check fro new files
         run: |
-          echo ls
+          cd Output
           git config --global user.email "ogd@tg.ch"
           git config --global user.name "ogdtg"
           git config --global credential.helper cache
           git clone https://${{secrets.PAT_TOKEN}}@github.com/ogdtg/data_public.git
-          mv Output public_output
+          cd output_data.csv public_output
           cd public_output
-          git add .
+          git add output_data.csv 
           git commit -m "$(date)"
           git push
 
