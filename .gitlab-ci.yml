@@ -39,6 +39,6 @@ jobs:
     - git add Output
 
     - git commit -m "data from $COMMIT_TIME" || echo "No changes, nothing to commit!"
-    - git branch -m main
+    - git checkout main
     - git push -u origin main
 
