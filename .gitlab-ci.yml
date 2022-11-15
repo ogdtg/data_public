@@ -24,7 +24,7 @@ before_script:
   #- git remote remove old
   - git remote set-url origin https://ogdtggitlab:$PAT_TOKEN@github.com/ogdtg/data_public.git
   - git checkout main
-  - git rm -r --cached 
+  - git rm -r --cached .
   #- git stash
   #- git pull
   #- git stash pop
@@ -46,7 +46,7 @@ jobs:
 # You might want to pull --rebase here just in case someone else has pushed to this branch?
     
     #- git pull --allow-unrelated-histories
-    - git add push_data
+    - git add .
     - git commit -m "data from $COMMIT_TIME" || echo "No changes, nothing to commit!"
     - git push -f origin main
 
