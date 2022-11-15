@@ -23,7 +23,9 @@ before_script:
   #- git remote remove old
   - git remote set-url origin https://ogdtggitlab:$PAT_TOKEN@github.com/ogdtg/data_public.git
   - git checkout main
+  - git stash
   - git pull
+  - git stash pop
   - Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv')"
   - Rscript -e "renv::restore()"
   - export COMMIT_TIME=$(git show -s --format=%ct $CI_COMMIT_SHA)  
