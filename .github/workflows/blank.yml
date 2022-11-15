@@ -51,7 +51,7 @@ jobs:
           git config --global user.name "ogdtg"
           git config --global credential.helper cache
           git clone https://${{secrets.PAT_TOKEN}}@github.com/ogdtg/data_public.git
-          cd output_data.csv public_output
+          cp output_data.csv public_output/ -f
           cd public_output
           git add output_data.csv 
           git commit -m "$(date)"
