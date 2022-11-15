@@ -1,0 +1,42 @@
+variables:
+  RENV_CONFIG_REPOS_OVERRIDE: "http://cran.r-project.org"
+  RENV_PATHS_CACHE: ${CI_PROJECT_DIR}/cache
+  RENV_PATHS_LIBRARY: ${CI_PROJECT_DIR}/renv/library
+  PAT_TOKEN: $PAT_TOKEN
+
+cache:
+  key: ${CI_JOB_NAME}
+  paths:
+    - ${RENV_PATHS_CACHE}
+    - ${RENV_PATHS_LIBRARY}
+
+image: rocker/r-ver:4.1.2
+
+
+before_script:
+  - apt-get update -y && apt-get install -yqqf git unzip sshpass rsync --fix-missing 
+  - git config --global user.name "ogd@tg.ch"
+  - git config --global user.email "ogdtg"
+  - Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv')"
+  - Rscript -e "renv::restore()"
+  - export COMMIT_TIME=$(git show -s --format=%ct $CI_COMMIT_SHA)  
+
+jobs:
+    artifacts:
+        expose_as: 'output'
+        paths:
+            - "output_data"
+    script:
+    - echo "Pulling external repo"
+    
+    # Do something after pulling your repo
+    - Rscript etl.R
+    
+# You might want to pull --rebase here just in case someone else has pushed to this branch?
+    - git clone https://$PAT_TOKEN:@github.com/ogdtg/data_private.git
+    - git remote rm origin && git remote add origin "git@github.com/ogdtg/data_private.git"
+    - git add output_data
+
+    - git commit -m "data from $COMMIT_TIME" || echo "No changes, nothing to commit!"
+    - git push origin
+
