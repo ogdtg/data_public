@@ -33,9 +33,8 @@ jobs:
     - Rscript etl.R
     
 # You might want to pull --rebase here just in case someone else has pushed to this branch?
-    - git clone https://$PAT_TOKEN:@github.com/ogdtg/data_private.git
-   # - git remote rm origin && git remote set-url origin https://ogdtggitlab:$PAT_TOKEN@github.com/ogdtg/data_private.git
-    - git remote set-url origin https://ogdtggitlab:$PAT_TOKEN@github.com/ogdtg/data_private.git
+    - git clone https://$PAT_TOKEN:@github.com/ogdtg/data_public.git
+    - git remote set-url origin https://ogdtggitlab:$PAT_TOKEN@github.com/ogdtg/data_public.git
     - git checkout main
     - git add Output
 
